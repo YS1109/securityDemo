@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysoztf.security.mapper.UserMapper">
+    <resultMap id="baseResultMap" type="com.ysoztf.security.entity.SysUser">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+    </resultMap>
+
+    <sql id="baseSearch">
+        id, user_name, password, expire_time, create_time, update_time, status
+    </sql>
+
+    <select id="getUserByUserName" resultMap="baseResultMap">
+        SELECT
+            <include refid="baseSearch"></include>
+        FROM
+            sys_user
+        WHERE
+            user_name = #{userName}
+    </select>
+</mapper>
