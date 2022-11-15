@@ -71,6 +71,7 @@ public class SecurityConfig{
                         authorizeRequests
                                 .anyRequest().authenticated()
                 )
+                // 解决不允许显示在iframe的问题
                 .headers().frameOptions().disable().cacheControl()
                 .and()
                 .and()
@@ -83,6 +84,7 @@ public class SecurityConfig{
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(securityTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf().disable()
+                //关闭session，使用sessionManagement().disable()方法是无效的，使用SessionCreationPolicy.NEVER仍会使用session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(daoAuthenticationProvider)

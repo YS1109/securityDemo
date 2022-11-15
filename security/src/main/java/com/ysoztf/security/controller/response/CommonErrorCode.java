@@ -4,7 +4,8 @@ public enum CommonErrorCode {
 
     SYSTEM_ERROR(100001L, "系统错误"),
     LOGIN_FAILED(100002L, "用户名或密码错误"),
-    INVALID_TOKEN(100003L, "无效的token");
+    INVALID_TOKEN(100003L, "无效的token"),
+    USERNAME_HAS_EXISTED(100004L, "用户名已存在");
 
 
     private final long errorCode;

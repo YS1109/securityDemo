@@ -23,4 +23,11 @@
         WHERE
             user_name = #{userName}
     </select>
+
+    <insert id="addSysUser">
+        INSERT INTO
+            sys_user (user_name, password, expire_time, status)
+        VALUES
+            (#{userName}, #{password}, #{expireTime}, #{status})
+    </insert>
 </mapper>
